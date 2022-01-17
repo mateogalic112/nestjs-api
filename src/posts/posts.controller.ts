@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { CreatePostDto } from './dto/CreatePostDto.dto';
 import PostsService from './posts.service';
-import { Post as UserPost } from './post.interface';
 import { UpdatePostDto } from './dto/UpdatePostDto';
 
 @Controller('posts')
@@ -17,17 +16,17 @@ export default class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  getAllPosts(): UserPost[] {
+  getAllPosts() {
     return this.postsService.getAllPosts();
   }
 
   @Get(':id')
-  getPostById(@Param('id') id: string): UserPost {
+  getPostById(@Param('id') id: string) {
     return this.postsService.getPostbyId(Number(id));
   }
 
   @Post()
-  async createPost(@Body() post: CreatePostDto): Promise<UserPost> | never {
+  async createPost(@Body() post: CreatePostDto) {
     return this.postsService.createPost(post);
   }
 
