@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  Logger,
   Param,
   Post,
   Put,
@@ -20,7 +19,6 @@ export default class PostsController {
 
   @Get()
   getAllPosts() {
-    Logger.log(this.postsService);
     return this.postsService.getAllPosts();
   }
 

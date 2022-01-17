@@ -6,7 +6,6 @@ import { PostgresErrorCode } from 'src/database/enums/postgresErrorCode';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { TokenPayload } from './types/tokenPayload';
-import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class AuthenticationService {
@@ -18,14 +17,12 @@ export class AuthenticationService {
 
   public async register(registrationData: RegisterDto) {
     const hashedPassword = await bcrypt.hash(registrationData.password, 10);
-    Logger.log(this.configService);
 
     try {
       const createdUser = await this.usersService.create({
         ...registrationData,
         password: hashedPassword,
       });
-      //Logger.log(createdUser);
       createdUser.password = undefined;
       return createdUser;
     } catch (error) {

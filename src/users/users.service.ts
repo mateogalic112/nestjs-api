@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import CreateUserDto from './dto/createUser.dto';
@@ -24,7 +24,6 @@ export class UsersService {
   }
 
   async create(userData: CreateUserDto) {
-    Logger.log('here');
     const newUser = this.usersRepository.create(userData);
     await this.usersRepository.save(newUser);
     return newUser;
