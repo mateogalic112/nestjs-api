@@ -3,7 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   UseGuards,
@@ -24,7 +26,7 @@ export default class PostsController {
   }
 
   @Get(':id')
-  getPostById(@Param('id') id: FindOneParams) {
+  getPostById(@Param('id', ParseIntPipe) id: FindOneParams) {
     return this.postsService.getPostbyId(Number(id));
   }
 
@@ -35,7 +37,14 @@ export default class PostsController {
   }
 
   @Put(':id')
-  async replacePost(@Param('id') id: string, @Body() post: UpdatePostDto) {
+  async replacePost(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: string,
+    @Body() post: UpdatePostDto,
+  ) {
     return this.postsService.replacePost(Number(id), post);
   }
 
