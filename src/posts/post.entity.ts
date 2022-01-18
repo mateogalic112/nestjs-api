@@ -1,5 +1,15 @@
 import { Transform } from 'class-transformer';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import Category from 'src/categories/category.entity';
+import User from 'src/users/entities/user.entity';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('posts')
 class Post extends BaseEntity {
@@ -19,6 +29,13 @@ class Post extends BaseEntity {
     }
   })
   public category?: string;
+
+  @ManyToOne(() => User, (author: User) => author.posts)
+  public author: User;
+
+  @ManyToMany(() => Category)
+  @JoinTable()
+  public categories: Category[];
 }
 
 export default Post;
