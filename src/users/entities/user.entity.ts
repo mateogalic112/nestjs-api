@@ -32,7 +32,7 @@ class User extends BaseEntity {
     cascade: true,
   })
   @JoinColumn()
-  public address: Address;
+  public address?: Address;
 
   @OneToMany(() => Post, (post: Post) => post.author)
   public posts?: Post[];

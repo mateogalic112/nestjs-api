@@ -1,32 +1,27 @@
 import User from 'src/users/entities/user.entity';
+import { RemoveOptions, SaveOptions } from 'typeorm';
 
 export const mockedUser: User = {
   id: 1,
-  email: 'mateo.galic@burza.hr',
-  name: 'John',
+  email: 'mateo.galic3@burza.hr',
+  name: 'Mateo',
   password: 'pass1234',
-  address: {
-    id: 1,
-    street: 'streetName',
-    city: 'cityName',
-    country: 'countryName',
-  },
-  hasId() {
+  hasId: function (): boolean {
     throw new Error('Function not implemented.');
   },
-  save(): Promise<User> {
+  save: function (options?: SaveOptions): Promise<User> {
     throw new Error('Function not implemented.');
   },
-  remove() {
+  remove: function (options?: RemoveOptions): Promise<User> {
     throw new Error('Function not implemented.');
   },
-  softRemove(): Promise<User> {
+  softRemove: function (options?: SaveOptions): Promise<User> {
     throw new Error('Function not implemented.');
   },
-  recover(): Promise<User> {
+  recover: function (options?: SaveOptions): Promise<User> {
     throw new Error('Function not implemented.');
   },
-  reload(): Promise<void> {
+  reload: function (): Promise<void> {
     throw new Error('Function not implemented.');
   },
 };

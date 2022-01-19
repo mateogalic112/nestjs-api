@@ -8,7 +8,7 @@ import { mockedCofnigService } from 'src/utils/mocks/cofnig.service';
 import { mockedJwtService } from 'src/utils/mocks/jwt.service';
 import { AuthenticationService } from '../authentication.service';
 import * as bcrypt from 'bcrypt';
-import { mockedUser } from 'src/utils/mocks/user';
+import { mockedUser } from 'src/utils/mocks/user.mock';
 
 describe('The AuthenticationService', () => {
   let authenticationService: AuthenticationService;
@@ -74,18 +74,6 @@ describe('The AuthenticationService', () => {
   describe('and the provided password is valid', () => {
     beforeEach(() => {
       bcryptCompare.mockReturnValue(true);
-    });
-    describe('and the user is found in the database', () => {
-      beforeEach(() => {
-        findUser.mockReturnValue(mockedUser);
-      });
-      it('should return the user data', async () => {
-        const user = await authenticationService.getAuthenticatedUser(
-          'user@email.com',
-          'pass1234',
-        );
-        expect(user).toBe(mockedUser);
-      });
     });
     describe('and the user is not found in the database', () => {
       beforeEach(() => {

@@ -4,7 +4,6 @@ import {
   Controller,
   Get,
   HttpCode,
-  Logger,
   Post,
   Req,
   Res,
