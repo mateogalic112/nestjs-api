@@ -1,4 +1,5 @@
 import { Exclude } from 'class-transformer';
+import PublicFile from 'src/files/entities/publicFile.entity';
 import Post from 'src/posts/post.entity';
 
 import {
@@ -36,6 +37,10 @@ class User extends BaseEntity {
 
   @OneToMany(() => Post, (post: Post) => post.author)
   public posts?: Post[];
+
+  @JoinColumn({ name: 'avatarId' })
+  @OneToOne(() => PublicFile, { eager: true, nullable: true })
+  public avatar?: PublicFile;
 }
 
 export default User;
