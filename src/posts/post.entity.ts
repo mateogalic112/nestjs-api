@@ -5,6 +5,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  Index,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -30,6 +31,7 @@ class Post extends BaseEntity {
   })
   public category?: string;
 
+  @Index('post_authorId_index')
   @ManyToOne(() => User, (author: User) => author.posts)
   public author: User;
 
